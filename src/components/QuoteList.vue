@@ -2,6 +2,7 @@
     <section class="quote-list">
         <div class="quote" v-for="(quote, i) in quotes.slice().reverse()" :key="i" @click="copyQuote(quote.content)">
             <div class="quote-header">{{ quote.content }}</div>
+            <div class="quote-author">{{ quote.author }}</div>
         </div>
 
         <Notification :show="showMessage" message="Цитату скопійовано!" type="copy" />

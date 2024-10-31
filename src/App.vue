@@ -2,10 +2,14 @@
     <div class="app">
         <Header title="The random Quoter" />
         <QuotePhrase :quote="quote" />
+
         <div class="button-container">
-            <button @click="fetchQuote">GET A NEW QUOTE</button>
+            <QuoteButton @click="fetchQuote" />
+            <SelectCategories />
         </div>
+
         <QuoteList :quotes="quotes" />
+
         <Notification :show="showErrorMessage" :message="errorMessage" type="error" />
     </div>
 </template>
@@ -17,6 +21,8 @@ import Header from './components/Header.vue';
 import QuotePhrase from './components/QuotePhrase.vue';
 import QuoteList from './components/QuoteList.vue';
 import Notification from './components/Notification.vue';
+import SelectCategories from './components/SelectCategories.vue';
+import QuoteButton from './components/QuoteButton.vue';
 
 export default {
     name: 'App',
@@ -24,7 +30,9 @@ export default {
         Header,
         QuotePhrase,
         QuoteList,
-        Notification
+        Notification,
+        SelectCategories,
+        QuoteButton,
     },
     computed: {
         ...mapState(['quote', 'quotes', 'showErrorMessage', 'errorMessage'])

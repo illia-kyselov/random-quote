@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import categories from './modules/categories';
 
 const store = createStore({
     state: {
@@ -8,6 +9,7 @@ const store = createStore({
             category: ''
         },
         quotes: [],
+        selectedCategory: '', // Зберігаємо вибрану категорію тут
         showErrorMessage: false,
         errorMessage: ''
     },
@@ -18,6 +20,9 @@ const store = createStore({
         ADD_QUOTE(state, quote) {
             state.quotes.push(quote);
         },
+        SET_CATEGORY(state, category) {
+            state.selectedCategory = category; // Оновлюємо вибрану категорію
+        },
         SET_ERROR(state, { message }) {
             state.errorMessage = message;
             state.showErrorMessage = true;
@@ -27,9 +32,12 @@ const store = createStore({
         }
     },
     actions: {
-        async fetchQuote({ commit }) {
+        async fetchQuote({ state, commit }) {
+            const categoryParam = state.selectedCategory ? `?category=${state.selectedCategory}` : '';
+            const apiUrl = `https://api.api-ninjas.com/v1/quotes${categoryParam}`;
+
             try {
-                const response = await fetch('https://api.api-ninjas.com/v1/quotes', {
+                const response = await fetch(apiUrl, {
                     headers: {
                         'X-Api-Key': process.env.VUE_APP_API_KEY
                     }
@@ -54,7 +62,14 @@ const store = createStore({
             } catch (error) {
                 commit('SET_ERROR', { message: 'Сталася помилка з підключенням до сервера!' });
             }
+        },
+        updateCategory({ commit, dispatch }, category) {
+            commit('SET_CATEGORY', category);
+            dispatch('fetchQuote');
         }
+    },
+    modules: {
+        categories
     }
 });
 
