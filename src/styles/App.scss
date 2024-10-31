@@ -1,0 +1,47 @@
+:root {
+    --primary: #E6FF2A;
+    --primaryDark: #fffb00;
+    --secondary: #0C4651;
+    --dark: #131A26;
+    --light: #F8F7F2;
+    --grey: #898A8E;
+    --red: #ff4d4d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+#app {
+    min-height: 100vh;
+    background-color: var(--grey);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    padding: 0px 32px;
+    margin: 28px auto;
+
+    button {
+        border: none;
+        outline: none;
+        background-color: var(--primary);
+        padding: 16px 32px;
+        border-radius: 99px;
+
+        color: var(--grey);
+        font-size: 1.5em;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.4s;
+
+        &:hover {
+            background-color: var(--primaryDark);
+        }
+    }
+}

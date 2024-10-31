@@ -1,26 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="app">
+        <Header title="The random Quoter" />
+        <QuotePhrase :quote="quote" />
+        <div class="button-container">
+            <button @click="fetchQuote">GET A NEW QUOTE</button>
+        </div>
+        <QuoteList :quotes="quotes" />
+        <Notification :show="showErrorMessage" :message="errorMessage" type="error" />
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { mapState } from 'vuex';
+import { useQuote } from './hooks/useQuote';
+import Header from './components/Header.vue';
+import QuotePhrase from './components/QuotePhrase.vue';
+import QuoteList from './components/QuoteList.vue';
+import Notification from './components/Notification.vue';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    components: {
+        Header,
+        QuotePhrase,
+        QuoteList,
+        Notification
+    },
+    computed: {
+        ...mapState(['quote', 'quotes', 'showErrorMessage', 'errorMessage'])
+    },
+    setup() {
+        const { fetchQuote } = useQuote();
+
+        return { fetchQuote };
+    },
+    created() {
+        this.fetchQuote();
+    }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style lang="scss" src="./styles/App.scss"></style>
