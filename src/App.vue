@@ -8,6 +8,8 @@
             <SelectCategories />
         </div>
 
+        <ShareButtons :quote="quote" />
+
         <QuoteList :quotes="quotes" />
 
         <Notification :show="showErrorMessage" :message="errorMessage" type="error" />
@@ -23,6 +25,7 @@ import QuoteList from './components/QuoteList.vue';
 import Notification from './components/Notification.vue';
 import SelectCategories from './components/SelectCategories.vue';
 import QuoteButton from './components/QuoteButton.vue';
+import ShareButtons from './components/ShareButtons.vue';
 
 export default {
     name: 'App',
@@ -33,6 +36,7 @@ export default {
         Notification,
         SelectCategories,
         QuoteButton,
+        ShareButtons,
     },
     computed: {
         ...mapState(['quote', 'quotes', 'showErrorMessage', 'errorMessage'])
