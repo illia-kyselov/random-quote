@@ -7,7 +7,7 @@ export default {
     name: 'QuoteButton',
     methods: {
         onClick() {
-            this.$emit('click');
+            this.$emit('fetchQuote');
         }
     }
 };
