@@ -1,4 +1,4 @@
-# huawei_test
+# random-quote
 
 ## Project setup
 ```
