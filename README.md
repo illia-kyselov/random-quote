@@ -1,4 +1,4 @@
-# random-quote
+# DEMO LINK [https://illia-kyselov.github.io/random-quote/]
 
 ## Project setup
 ```
